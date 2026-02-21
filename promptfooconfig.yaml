@@ -55,11 +55,12 @@ x-chunk-assertions: &chunk-assertions
   - type: is-json
   - type: javascript
     value: file://assertions/chunk-analysis.js
-  - type: llm-rubric
-    value: >
-      The analysis accurately identifies political positions and key arguments
-      present in the transcript. Quotes reference real sentence numbers from the
-      text. The political stance signals correctly capture the viewpoints expressed.
+  # Uncomment below if you have OPENAI_API_KEY or ANTHROPIC_API_KEY set:
+  # - type: llm-rubric
+  #   value: >
+  #     The analysis accurately identifies political positions and key arguments
+  #     present in the transcript. Quotes reference real sentence numbers from the
+  #     text. The political stance signals correctly capture the viewpoints expressed.
 
 providers:
   - id: ollama:chat:gemma3:12b
