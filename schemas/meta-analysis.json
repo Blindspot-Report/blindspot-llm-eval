@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "paragraphSummary": { "type": "string" },
+    "summary": { "type": "string" },
+    "bulletPointsSummary": { "type": "array", "items": { "type": "string" } },
+    "analysisConfidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "politicalStance": { "type": "string", "enum": ["Far Left", "Left-leaning", "Centrist", "Right-leaning", "Far Right"] },
+    "stanceExplanation": { "type": "string" },
+    "topQuotes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "context": { "type": "string" },
+          "timestamp": { "type": "string" }
+        },
+        "required": ["text", "context"]
+      }
+    },
+    "topics": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["paragraphSummary", "summary", "bulletPointsSummary", "analysisConfidence", "politicalStance", "stanceExplanation", "topQuotes", "topics"]
+}

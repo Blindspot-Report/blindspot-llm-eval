@@ -1,0 +1,18 @@
+{
+  "name": "blindspot-llm-eval",
+  "version": "1.0.0",
+  "description": "LLM evaluation framework for Blindspot podcast political analysis",
+  "scripts": {
+    "eval": "promptfoo eval",
+    "eval:gemma": "promptfoo eval --providers ollama:chat:gemma3:12b",
+    "view": "promptfoo view",
+    "extract-data": "npx tsx scripts/extract-test-data.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "promptfoo": "^0.120.25"
+  }
+}

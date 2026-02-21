@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "keyPoints": { "type": "array", "items": { "type": "string" } },
+    "quotes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "startIndex": { "type": "integer" },
+          "endIndex": { "type": "integer" },
+          "context": { "type": "string" },
+          "significance": { "type": "string", "enum": ["high", "medium", "low"] }
+        },
+        "required": ["startIndex", "endIndex", "context", "significance"]
+      }
+    },
+    "stanceSignals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string" },
+          "position": { "type": "string" },
+          "strength": { "type": "string", "enum": ["strong", "moderate", "weak"] }
+        },
+        "required": ["topic", "position", "strength"]
+      }
+    },
+    "topics": { "type": "array", "items": { "type": "string" } },
+    "tone": { "type": "string" }
+  },
+  "required": ["keyPoints", "quotes", "stanceSignals", "topics", "tone"]
+}

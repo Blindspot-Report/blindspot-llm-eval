@@ -1,0 +1,57 @@
+{
+  "chunkIndex": 0,
+  "keyPoints": [
+    "The Guthrie family is seeking information from whoever is holding Nancy Guthrie, their 84-year-old mother, who has been missing for six days.",
+    "Bill and Hillary Clinton have agreed to appear for depositions before Congress as part of the Jeffrey Epstein investigation, after initially resisting and citing a 'principled stand'.",
+    "A California man, Derek Kalella, has been arrested for allegedly sending fake ransom texts to members of the Guthrie family.",
+    "Congressman James Comer states that contempt of Congress proceedings remain on the table if the Clintons fail to appear for their scheduled depositions."
+  ],
+  "quotes": [
+    {
+      "text": "Every person has to decide when they have seen or had enough and are ready to fight for this country, its principles, and its people, no matter the consequences.",
+      "context": "This quote is from a letter written by Bill and Hillary Clinton explaining their initial resistance to appearing for depositions.",
+      "significance": "high",
+      "timestamp": "346"
+    },
+    {
+      "text": "Let's stop the games. If you want this fight, Representative James Comer, let's have it in public. You love to talk about transparency. There's nothing more transparent than a public hearing.",
+      "context": "This quote is from a post by Hillary Clinton challenging James Comer to hold a public hearing regarding the Epstein investigation.",
+      "significance": "medium",
+      "timestamp": "2"
+    },
+    {
+      "text": "Depositions have historically been much more substantive than hearings. Hearings are, unfortunately, have become more of an entertainment thing.",
+      "context": "This quote is from Congressman Comer, explaining his preference for depositions over public hearings in the context of the Clinton investigation.",
+      "significance": "medium",
+      "timestamp": "530"
+    }
+  ],
+  "stanceSignals": [
+    {
+      "topic": "Congressional Investigations",
+      "position": "Supports holding individuals accountable through depositions and potential contempt of Congress proceedings.",
+      "strength": "strong"
+    },
+    {
+      "topic": "Clinton Investigation",
+      "position": "Believes the Clintons should be subject to standard deposition procedures and potentially public hearings.",
+      "strength": "strong"
+    },
+    {
+      "topic": "Ransom Demands",
+      "position": "Condemns the actions of Derek Kalella, who sent fake ransom texts to the Guthrie family.",
+      "strength": "strong"
+    }
+  ],
+  "topics": [
+    "Missing Persons",
+    "Congressional Investigations",
+    "Jeffrey Epstein Investigation",
+    "Ransom Demands",
+    "Contempt of Congress"
+  ],
+  "tone": "analytical",
+  "tokenCount": 1981,
+  "startTime": 2720,
+  "endTime": 542120
+}

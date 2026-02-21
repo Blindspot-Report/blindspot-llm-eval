@@ -1,0 +1,57 @@
+{
+  "chunkIndex": 0,
+  "keyPoints": [
+    "The search for 84-year-old Nancy Guthrie is ongoing, with a ransom note received and Savannah Guthrie publicly pleading for her mother's safe return.",
+    "Tommaso Sioni, Annie Guthrie's husband, is being investigated as a possible suspect in Nancy Guthrie's disappearance, although authorities have not officially named him.",
+    "Tom Homan announced a drawdown of 700 federal agents in Minneapolis due to increased local law enforcement cooperation regarding ICE detainers.",
+    "Two medical organizations have taken a position against performing permanent, life-altering surgeries on gender-confused children following pressure from the Trump administration."
+  ],
+  "quotes": [
+    {
+      "text": "We need to know without a doubt that she is alive and that you have her.",
+      "context": "Savannah Guthrie's plea for her mother's safe return, highlighting the family's concern and the uncertainty surrounding her whereabouts.",
+      "significance": "high",
+      "timestamp": "9"
+    },
+    {
+      "text": "The sharing of unverified accusations or false information is irresponsible.",
+      "context": "A statement from the Pima County Sheriff's Office responding to reports about Tommaso Sioni, emphasizing the importance of responsible reporting.",
+      "significance": "medium",
+      "timestamp": "252"
+    },
+    {
+      "text": "This is efficient. It requires only one or two officers to assume custody of a criminal alien target rather than eight or ten officers going into the community and arresting that public safety threat.",
+      "context": "Tom Homan's explanation of the benefits of increased cooperation with local law enforcement in deporting criminal aliens.",
+      "significance": "medium",
+      "timestamp": "2"
+    }
+  ],
+  "stanceSignals": [
+    {
+      "topic": "Missing Person/Law Enforcement",
+      "position": "Supports thorough investigation and responsible reporting regarding Nancy Guthrie's disappearance.",
+      "strength": "strong"
+    },
+    {
+      "topic": "Immigration Enforcement",
+      "position": "Supports increased cooperation between federal and local law enforcement for ICE detainers and deportation of criminal aliens.",
+      "strength": "strong"
+    },
+    {
+      "topic": "Gender-affirming care",
+      "position": "Implies support for restrictions on gender-affirming surgeries for children, following pressure from the Trump administration.",
+      "strength": "moderate"
+    }
+  ],
+  "topics": [
+    "Missing Person",
+    "Law Enforcement",
+    "Immigration",
+    "Gender-affirming care",
+    "Political Pressure"
+  ],
+  "tone": "analytical",
+  "tokenCount": 1982,
+  "startTime": 2720,
+  "endTime": 606200
+}

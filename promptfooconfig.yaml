@@ -1,0 +1,102 @@
+description: "Blindspot LLM Political Analysis Evaluation"
+
+# Shared config anchor for all providers
+x-chunk-config: &chunk-config
+  temperature: 0.2
+  num_predict: 8192
+  top_p: 0.9
+  top_k: 40
+  passthrough:
+    format:
+      type: object
+      properties:
+        keyPoints:
+          type: array
+          items:
+            type: string
+        quotes:
+          type: array
+          items:
+            type: object
+            properties:
+              startIndex:
+                type: integer
+              endIndex:
+                type: integer
+              context:
+                type: string
+              significance:
+                type: string
+                enum: ["high", "medium", "low"]
+            required: ["startIndex", "endIndex", "context", "significance"]
+        stanceSignals:
+          type: array
+          items:
+            type: object
+            properties:
+              topic:
+                type: string
+              position:
+                type: string
+              strength:
+                type: string
+                enum: ["strong", "moderate", "weak"]
+            required: ["topic", "position", "strength"]
+        topics:
+          type: array
+          items:
+            type: string
+        tone:
+          type: string
+      required: ["keyPoints", "quotes", "stanceSignals", "topics", "tone"]
+
+# Shared assertion anchor for all chunk test cases
+x-chunk-assertions: &chunk-assertions
+  - type: is-json
+  - type: javascript
+    value: file://assertions/chunk-analysis.js
+  - type: llm-rubric
+    value: >
+      The analysis accurately identifies political positions and key arguments
+      present in the transcript. Quotes reference real sentence numbers from the
+      text. The political stance signals correctly capture the viewpoints expressed.
+
+providers:
+  - id: ollama:chat:gemma3:12b
+    label: "Gemma3 12B (baseline)"
+    config: *chunk-config
+
+  - id: ollama:chat:phi4-mini
+    label: "Phi-4 Mini 3.8B"
+    config: *chunk-config
+
+  - id: ollama:chat:llama3.2:3b
+    label: "Llama 3.2 3B"
+    config: *chunk-config
+
+  - id: ollama:chat:granite3.3:8b
+    label: "Granite 3.3 8B"
+    config: *chunk-config
+
+prompts:
+  - file://prompts/chunk-analysis.json
+
+tests:
+  - description: "Megyn Kelly AM Update 2/6 — Clinton depositions, voter ID, Guthrie kidnapping"
+    vars:
+      transcript: file://test-cases/transcripts/megyn-kelly-10433.txt
+    assert: *chunk-assertions
+
+  - description: "Megyn Kelly — Guthrie investigation, Kelsey Grammer, GOP in Hollywood"
+    vars:
+      transcript: file://test-cases/transcripts/megyn-kelly-10434.txt
+    assert: *chunk-assertions
+
+  - description: "Megyn Kelly AM Update 2/5 — ICE drawdown, gender-affirming care reversal"
+    vars:
+      transcript: file://test-cases/transcripts/megyn-kelly-10435.txt
+    assert: *chunk-assertions
+
+defaultTest:
+  options:
+    timeout: 900000  # 15 min to match Blindspot's timeout
