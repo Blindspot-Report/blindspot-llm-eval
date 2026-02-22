@@ -21,8 +21,8 @@ module.exports = (output, context) => {
     results.push('keyPoints is not an array');
   } else {
     const valid = parsed.keyPoints.filter(p => typeof p === 'string' && p.trim().length > 0);
-    if (valid.length < 1) {
-      results.push(`keyPoints has ${valid.length} non-empty items (expected at least 1)`);
+    if (valid.length < 3) {
+      results.push(`keyPoints has ${valid.length} non-empty items (expected at least 3)`);
     }
     if (valid.length > 12) {
       results.push(`keyPoints has ${valid.length} items (expected at most 12)`);
@@ -77,8 +77,8 @@ module.exports = (output, context) => {
   // --- topics: non-empty array of strings ---
   if (!Array.isArray(parsed.topics)) {
     results.push('topics is not an array');
-  } else if (parsed.topics.length === 0) {
-    results.push('topics array is empty');
+  } else if (parsed.topics.length < 2) {
+    results.push(`topics has ${parsed.topics.length} items (expected at least 2)`);
   } else {
     const invalid = parsed.topics.filter(t => typeof t !== 'string' || t.trim().length === 0);
     if (invalid.length > 0) {

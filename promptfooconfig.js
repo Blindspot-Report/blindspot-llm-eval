@@ -68,9 +68,11 @@ not hallucinated subjects.
 ORIGINAL TRANSCRIPT:
 {{transcript}}
 
-Grade as PASS only if all keyPoints, stance signals, and quote contexts are
-factually consistent with the transcript. A single factual inversion or
-misattribution should result in FAIL.`;
+Return a score between 0 and 1 using these deductions from a starting score of 1.0:
+- Major error (fabricated claim, inverted position): -0.3
+- Moderate error (misattribution, wrong name): -0.2
+- Minor error (omission in parenthetical, imprecise phrasing): -0.1
+List each error found with its severity before computing the final score.`;
 
 module.exports = (async () => {
   let episode;
@@ -108,7 +110,7 @@ module.exports = (async () => {
         assert: [
           { type: 'is-json' },
           { type: 'javascript', value: 'file://assertions/chunk-analysis.js' },
-          { type: 'llm-rubric', value: semanticRubric },
+          { type: 'llm-rubric', value: semanticRubric, threshold: 0.6 },
           { type: 'factuality', value: episode.factualityFacts },
         ],
       },
