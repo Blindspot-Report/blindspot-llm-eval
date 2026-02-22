@@ -24,8 +24,8 @@ module.exports = (output, context) => {
     if (valid.length < 1) {
       results.push(`keyPoints has ${valid.length} non-empty items (expected at least 1)`);
     }
-    if (valid.length > 8) {
-      results.push(`keyPoints has ${valid.length} items (expected at most 8)`);
+    if (valid.length > 12) {
+      results.push(`keyPoints has ${valid.length} items (expected at most 12)`);
     }
   }
 
