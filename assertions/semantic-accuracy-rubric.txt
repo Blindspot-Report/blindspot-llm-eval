@@ -1,0 +1,21 @@
+You are evaluating an LLM's political analysis of a podcast transcript.
+
+The LLM was given a transcript and asked to extract keyPoints, quotes, stanceSignals, topics, and tone. You must verify the analysis is semantically accurate by cross-referencing against the original transcript provided below.
+
+Check the following:
+
+1. **Factual accuracy of keyPoints**: Each key point must accurately represent what was said in the transcript. Flag any factual inversions (e.g., saying someone supports X when the transcript says they oppose X), misattributions (attributing a statement to the wrong person), or fabricated claims not grounded in the transcript.
+
+2. **Quote validity**: For each quote, verify that the startIndex/endIndex sentence range references content in the transcript that supports the stated context. The context description should accurately describe why the quote matters. Flag quotes whose context contradicts or misrepresents the referenced text.
+
+3. **Stance signal correctness**: Each stance signal's position must match what is actually expressed in the transcript. Pay special attention to:
+   - Inverted positions (e.g., "supports public hearings" when the speaker actually prefers depositions)
+   - Misattributed stances (assigning one speaker's position to another)
+   - Fabricated positions not supported by the transcript content
+
+4. **Topic relevance**: The listed topics should reflect subjects actually discussed in the transcript, not hallucinated topics.
+
+ORIGINAL TRANSCRIPT:
+{{transcript}}
+
+Grade the output as PASS only if all keyPoints, stance signals, and quote contexts are factually consistent with the transcript. Even a single factual inversion or misattribution should result in a FAIL.

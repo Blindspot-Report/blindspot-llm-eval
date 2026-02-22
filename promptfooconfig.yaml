@@ -50,17 +50,13 @@ x-chunk-config: &chunk-config
           type: string
       required: ["keyPoints", "quotes", "stanceSignals", "topics", "tone"]
 
-# Shared assertion anchor for all chunk test cases
+# Shared structural assertions (used as anchor reference)
 x-chunk-assertions: &chunk-assertions
   - type: is-json
   - type: javascript
     value: file://assertions/chunk-analysis.js
-  # Uncomment below if you have OPENAI_API_KEY or ANTHROPIC_API_KEY set:
-  # - type: llm-rubric
-  #   value: >
-  #     The analysis accurately identifies political positions and key arguments
-  #     present in the transcript. Quotes reference real sentence numbers from the
-  #     text. The political stance signals correctly capture the viewpoints expressed.
+  - type: llm-rubric
+    value: file://assertions/semantic-accuracy-rubric.txt
 
 providers:
   - id: ollama:chat:gemma3:12b
@@ -86,18 +82,53 @@ tests:
   - description: "Megyn Kelly AM Update 2/6 — Clinton depositions, voter ID, Guthrie kidnapping"
     vars:
       transcript: file://test-cases/transcripts/megyn-kelly-10433.txt
-    assert: *chunk-assertions
+    assert:
+      - type: is-json
+      - type: javascript
+        value: file://assertions/chunk-analysis.js
+      - type: llm-rubric
+        value: file://assertions/semantic-accuracy-rubric.txt
+      - type: factuality
+        value: |
+          Congressman Comer prefers depositions over public hearings because depositions are more substantive.
+          Hillary Clinton challenged Comer to hold public hearings rather than depositions.
+          Bill and Hillary Clinton initially resisted appearing for depositions before Congress.
+          The Guthrie family is seeking information about their missing 84-year-old mother Nancy Guthrie.
+          Derek Kalella was arrested for sending fake ransom texts to the Guthrie family.
 
   - description: "Megyn Kelly — Guthrie investigation, Kelsey Grammer, GOP in Hollywood"
     vars:
       transcript: file://test-cases/transcripts/megyn-kelly-10434.txt
-    assert: *chunk-assertions
+    assert:
+      - type: is-json
+      - type: javascript
+        value: file://assertions/chunk-analysis.js
+      - type: llm-rubric
+        value: file://assertions/semantic-accuracy-rubric.txt
+      - type: factuality
+        value: |
+          Savannah Guthrie and her siblings released a video pleading for their mother's return.
+          Reports of a ransom letter have surfaced and the family acknowledges them.
+          The video's production style was intentionally unpolished.
+          Law enforcement assisted in the video's production.
 
   - description: "Megyn Kelly AM Update 2/5 — ICE drawdown, gender-affirming care reversal"
     vars:
       transcript: file://test-cases/transcripts/megyn-kelly-10435.txt
-    assert: *chunk-assertions
+    assert:
+      - type: is-json
+      - type: javascript
+        value: file://assertions/chunk-analysis.js
+      - type: llm-rubric
+        value: file://assertions/semantic-accuracy-rubric.txt
+      - type: factuality
+        value: |
+          Tom Homan announced a drawdown of 700 federal agents in Minneapolis due to increased local law enforcement cooperation.
+          Tommaso Sioni, Annie Guthrie's husband, is being investigated as a possible suspect in Nancy Guthrie's disappearance.
+          Two medical organizations have taken a position against performing permanent surgeries on gender-confused children.
+          The search for Nancy Guthrie is ongoing with a ransom note received.
 
 defaultTest:
   options:
     timeout: 900000  # 15 min to match Blindspot's timeout
+    provider: anthropic:messages:claude-haiku-4-5-20251001  # grading model for LLM-based assertions
