@@ -11,8 +11,6 @@ const ws = require('ws');
 // Neon requires WebSocket polyfill in Node
 neonConfig.webSocketConstructor = ws;
 
-const CHUNK_SIZE_CHARS = 8000;
-
 /**
  * Number sentences like the Blindspot chunker does.
  */
@@ -92,12 +90,12 @@ async function fetchLatestEpisode(databaseUrl) {
     }
 
     const episode = rows[0];
-    const chunk = episode.transcript_text.slice(0, CHUNK_SIZE_CHARS);
-    const transcript = numberSentences(chunk);
+    const transcript = numberSentences(episode.transcript_text);
+    const transcriptCharCount = episode.transcript_text.length;
     const description = `${episode.podcast_name} — ${episode.title}`;
     const factualityFacts = buildFactualityFacts(episode);
 
-    return { transcript, description, factualityFacts };
+    return { transcript, description, factualityFacts, transcriptCharCount };
   } finally {
     await pool.end();
   }

@@ -83,14 +83,18 @@ module.exports = (async () => {
 
   console.log(`Loaded test case: ${episode.description}`);
 
+  // Dynamic context window: rough chars-to-tokens conversion plus headroom
+  const numCtx = Math.max(8192, Math.ceil(episode.transcriptCharCount / 3.5) + 4096);
+  const providerConfig = { ...chunkConfig, num_ctx: numCtx };
+
   return {
     description: 'Blindspot LLM Political Analysis Evaluation',
 
     providers: [
-      { id: 'ollama:chat:gemma3:12b', label: 'Gemma3 12B (baseline)', config: chunkConfig },
-      { id: 'ollama:chat:phi4-mini', label: 'Phi-4 Mini 3.8B', config: chunkConfig },
-      { id: 'ollama:chat:llama3.2:3b', label: 'Llama 3.2 3B', config: chunkConfig },
-      { id: 'ollama:chat:granite3.3:8b', label: 'Granite 3.3 8B', config: chunkConfig },
+      { id: 'ollama:chat:gemma3:12b', label: 'Gemma3 12B (baseline)', config: providerConfig },
+      { id: 'ollama:chat:phi4-mini', label: 'Phi-4 Mini 3.8B', config: providerConfig },
+      { id: 'ollama:chat:llama3.2:3b', label: 'Llama 3.2 3B', config: providerConfig },
+      { id: 'ollama:chat:granite3.3:8b', label: 'Granite 3.3 8B', config: providerConfig },
     ],
 
     prompts: ['file://prompts/chunk-analysis.json'],
@@ -113,7 +117,7 @@ module.exports = (async () => {
     defaultTest: {
       options: {
         timeout: 900000,
-        provider: 'anthropic:messages:claude-haiku-4-5-20251001',
+        provider: 'anthropic:messages:claude-sonnet-4-6',
       },
     },
   };
