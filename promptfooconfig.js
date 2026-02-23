@@ -97,6 +97,7 @@ module.exports = (async () => {
       { id: 'ollama:chat:phi4-mini', label: 'Phi-4 Mini 3.8B', config: providerConfig },
       { id: 'ollama:chat:llama3.2:3b', label: 'Llama 3.2 3B', config: providerConfig },
       { id: 'ollama:chat:granite3.3:8b', label: 'Granite 3.3 8B', config: providerConfig },
+      { id: 'ollama:chat:mistral-nemo:12b', label: 'Mistral Nemo 12B', config: providerConfig },
     ],
 
     prompts: ['file://prompts/chunk-analysis.json'],
