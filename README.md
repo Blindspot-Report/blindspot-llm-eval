@@ -26,7 +26,7 @@ The current production model is **Gemma3:12b**. This framework evaluates alterna
 ### Prerequisites
 
 - [Ollama](https://ollama.com) running locally
-- Node.js 18+
+- Node.js 22.22+ (required by promptfoo 0.125)
 
 ### Setup
 
